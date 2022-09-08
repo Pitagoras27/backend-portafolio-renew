@@ -3,8 +3,9 @@ const router = Router();
 const { check } = require('express-validator');
 const { loginUser, renewToken, registerUser } = require('../controllers/auth');
 const { fieldsValidators } = require('../middlewares/fields-validator');
+const { validateJwt } = require('../middlewares/validateJwt');
 
-router.get('/renew', renewToken)
+router.get('/renew', validateJwt, renewToken)
 
 router.post('/', [
   check('email', 'Email should have correct format').isEmail(),
