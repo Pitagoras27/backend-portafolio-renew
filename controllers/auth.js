@@ -3,11 +3,23 @@ const { generateJWT } = require('../helpers/generateJWT')
 const UserSchema = require('../models/user');
 const bcrypt = require('bcryptjs');
 
-const renewToken = (req, res = response) => {
-  res.json({
-    ok: true,
-    message: 'renew token'
-  })
+const renewToken = async (req, res = response) => {
+  try {
+    const {uid, name} = req;
+    const token = await generateJWT(uid, name);
+
+    res.json({
+      ok: true,
+      message: 'renew token',
+      name, uid,
+      token
+    })
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: error
+    });
+  }
 }
 
 const registerUser = async (req, res = response) => {
@@ -57,7 +69,7 @@ const loginUser = async (req, res = response) => {
     if(!user) {
       return res.status(400).json({
         ok: false,
-        msg: 'Email not exists!',
+        msg: 'Email not exists, try to create an account!',
       });
     }
 
