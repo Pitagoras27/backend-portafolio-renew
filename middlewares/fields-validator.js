@@ -17,3 +17,13 @@ const fieldsValidators = (req, res, next) => {
 module.exports = {
   fieldsValidators,
 }
+
+const fieldMatchPassword = ( val,  { req } ) => {
+  if (val !== req.body.password) return false;
+  return true
+}
+
+module.exports = {
+  fieldsValidators,
+  fieldMatchPassword
+}
