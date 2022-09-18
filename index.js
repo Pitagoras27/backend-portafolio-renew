@@ -15,6 +15,7 @@ app.use( express.json() );
 
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/messages-client', require('./routes/messages'))
+app.use('/api/quotes', require('./routes/quotes'))
 
 app.use(express.static('public'));
 

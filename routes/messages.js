@@ -3,6 +3,8 @@ const router = Router();
 const { check } = require('express-validator');
 const { addMessage } = require('../controllers/addMessage');
 
+// TODO: verify token
+// TODO: verify if check validation works
 router.post(
   '/',
   [
