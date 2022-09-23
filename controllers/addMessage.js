@@ -3,7 +3,7 @@ const MessageSchema = require('../models/message');
 
 const addMessage = async (req, res = response) => {
   try {
-    const { interests, message } = req.body;
+    const { name, email, interests, message} = req.body;
     const messageToSave = new MessageSchema(req.body);
   
     messageToSave.save();
@@ -11,7 +11,7 @@ const addMessage = async (req, res = response) => {
     res.json({
       ok: true, 
       msg: 'You have save your messages',
-      interests, message
+      interests, message, name, email
     });
 
   } catch (error) {

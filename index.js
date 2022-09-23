@@ -19,6 +19,6 @@ app.use('/api/quotes', require('./routes/quotes'))
 
 app.use(express.static('public'));
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server runs in port ${ process.env.PORT }`)
 });
